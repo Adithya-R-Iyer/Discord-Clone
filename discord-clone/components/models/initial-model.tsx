@@ -78,20 +78,20 @@ export const InitialModel = () => {
                 <div className="space-y-8 px-6">
                   <div className="flex items-center justify-center text-center">
                     {/* <FormField
-                                control={form.control}
-                                name="imageUrl"
-                                render={({ field }) => (
-                                    <FormItem>
-                                    <FormControl>
-                                        <FileUpload
-                                        endpoint="serverImage"
-                                        value={field.value}
-                                        onChange={field.onChange}
-                                        />
-                                    </FormControl>
-                                    </FormItem>
-                                )}
-                                /> */}
+                      control={form.control}
+                      name="imageUrl"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <FileUpload
+                              endpoint="serverImage"
+                              value={field.value}
+                              onChange={field.onChange}
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    /> */}
                   </div>
 
                   <FormField
@@ -109,6 +109,7 @@ export const InitialModel = () => {
                             placeholder="Enter server name"
                             {...field}
                           />
+                          {/*The {...field} spread operator is used to pass the form control's properties (e.g., value, onChange, etc.) to the <Input> component, allowing it to be controlled by React Hook Form.  */}
                         </FormControl>
                         <FormMessage />
                       </FormItem>
