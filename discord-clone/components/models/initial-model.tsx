@@ -1,7 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import {
   Dialog,
   DialogContent,
@@ -11,8 +15,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useForm } from "react-hook-form";
-
 import {
   Form,
   FormControl,
@@ -23,7 +25,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+
+import FileUpload from "@/components/file-upload";
 
 export const InitialModel = () => {
   const formSchema = z.object({
@@ -77,7 +80,7 @@ export const InitialModel = () => {
               >
                 <div className="space-y-8 px-6">
                   <div className="flex items-center justify-center text-center">
-                    {/* <FormField
+                    <FormField
                       control={form.control}
                       name="imageUrl"
                       render={({ field }) => (
@@ -91,7 +94,7 @@ export const InitialModel = () => {
                           </FormControl>
                         </FormItem>
                       )}
-                    /> */}
+                    />
                   </div>
 
                   <FormField
