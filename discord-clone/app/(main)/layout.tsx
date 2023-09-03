@@ -1,31 +1,14 @@
-import '../globals.css'
-import type { Metadata } from 'next'
-import { Open_Sans } from 'next/font/google'
-import { ClerkProvider } from '@clerk/nextjs'
-import { ThemeProvider } from "@/components/providers/theme-provider"
-import { cn } from '@/lib/utils'
+const MainLayout = async ({children} : {children: React.ReactNode}) => {
+    return ( 
+        <div className="h-full">
+            <div className="hidden md:flex h-full w-[72px] z-30 flex-col fixed inset-y-0">
 
-const font = Open_Sans({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Discord',
-  description: 'Team Chat Application',
+            </div>
+            <main className="md:pl-[72px] h-full">
+                {children}
+            </main>
+        </div>
+     );
 }
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey='discord-theme'>
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
-  )
-}
+ 
+export default MainLayout;
