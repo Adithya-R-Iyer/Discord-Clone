@@ -87,3 +87,5 @@ model Channel {
   @@index([profileId])
   @@index([serverId])
 }
+
+//@prisma/client library is a package that contains the automatically generated TypeScript code based on your Prisma schema. You can typically find it in your project's node_modules directory after you've generated the Prisma client.

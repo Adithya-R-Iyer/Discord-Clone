@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import axios from "axios"
+
 import {
   Dialog,
   DialogContent,
@@ -27,6 +29,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import FileUpload from "@/components/file-upload";
+import { useRouter } from "next/navigation";
 
 export const InitialModel = () => {
   const formSchema = z.object({
@@ -38,6 +41,8 @@ export const InitialModel = () => {
     }),
   });
 
+  const router = useRouter();
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,8 +53,16 @@ export const InitialModel = () => {
 
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => { //Describe what would happen if the form is submitted
+    try {
+      await axios.post("/api/servers", values);
+
+      form.reset();
+      router.refresh();
+      window.location.reload();
+    } catch(err) {
+      console.log(err);
+    }
   };
 
   // TO resolve the Hydration error use the Mount Trick
@@ -120,7 +133,7 @@ export const InitialModel = () => {
                   />
                 </div>
                 <DialogFooter className="bg-gray-100 px-6 py-4">
-                  <Button variant="primary" disabled={isLoading}>
+                  <Button variant="primary" disabled={isLoading} type="submit">
                     Create
                   </Button>
                 </DialogFooter>
