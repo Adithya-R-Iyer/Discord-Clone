@@ -2,6 +2,7 @@
 
 import { CreateServerModal } from "@/components/models/create-server-model"
 import { useEffect, useState } from "react";
+import { InviteModel } from "@/components/models/invite-model";
 
 const ModalProvider = () => {
 
@@ -21,6 +22,7 @@ const ModalProvider = () => {
     return ( 
         <>
            <CreateServerModal/>
+           <InviteModel/>
         </>
      );
 }
