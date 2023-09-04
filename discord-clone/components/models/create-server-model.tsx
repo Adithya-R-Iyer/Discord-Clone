@@ -62,6 +62,7 @@ export const CreateServerModal = () => {
 
       form.reset();
       router.refresh();
+      onClose();  // setting the zustand's createServer model to null so that the dialog is close
     } catch(err) {
       console.log(err);
     }
@@ -69,7 +70,7 @@ export const CreateServerModal = () => {
 
   const handleClose = ()=> {
     form.reset();
-    onClose();
+    onClose(); // setting the zustand's createServer model to null so that the dialog is close
   }
 
   return (
