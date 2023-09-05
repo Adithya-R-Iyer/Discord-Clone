@@ -31,8 +31,8 @@ const ServerHeader = ({ server, role } : ServerHeaderProps) => {
     const { onOpen } = UseModel();
 
     const isAdmin = role === MemberRole.ADMIN;
-    const isModerator = isAdmin || role === MemberRole.MODERATOR;
-
+    var isModerator = isAdmin || role === MemberRole.MODERATOR;
+    
     return ( 
         <DropdownMenu>
             <DropdownMenuTrigger

@@ -27,7 +27,7 @@ model Server {
   id String @id @default(uuid()) // @id specifies that its a primary key
   name String
   imageUrl String @db.Text  //entry in db should be Text only
-  inviteCode String @db.Text
+  inviteCode String @unique
 
   profileId String
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade) // foreign key - Many to One relationship
