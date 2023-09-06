@@ -6,6 +6,7 @@ import { InviteModel } from "@/components/models/invite-model";
 import { EditServerModel } from "@/components/models/edit-server-model";
 import { MembersModel } from "@/components/models/members-model";
 import { CreateChannelModel } from "@/components/models/create-channel-model";
+import { LeaveServerModel } from "@/components/models/leave-server-model";
 
 const ModalProvider = () => {
 
@@ -29,6 +30,7 @@ const ModalProvider = () => {
            <EditServerModel/>
            <MembersModel/>
            <CreateChannelModel/>
+           <LeaveServerModel/>
         </>
      );
 }
