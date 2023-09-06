@@ -5,8 +5,9 @@ import { UseModel } from "@/hooks/use-modal-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { ChannelType } from "@prisma/client";
+import qs from 'query-string'
 
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import axios from "axios"
 
 import {
@@ -33,11 +34,13 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ServerWithMembersProfilesAndChannels } from "@/types";
 
 
 export const CreateChannelModel = () => {
 
-  const { isOpen, onClose, type } = UseModel();
+  const { isOpen, onClose, type, data } = UseModel();
+  // const { server } = data as { server : ServerWithMembersProfilesAndChannels }; 
 
   const isModelOpen = isOpen && type === "createChannel";
 
@@ -54,6 +57,7 @@ export const CreateChannelModel = () => {
   });
 
   const router = useRouter();
+  const params = useParams(); // using url params to fetch serverId ...not following d traditional method
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -63,11 +67,18 @@ export const CreateChannelModel = () => {
     },
   });
 
+  const url = qs.stringifyUrl({
+    url: `/api/channels/`,
+    query: {
+      serverId: params?.serverId,
+    }
+  })
+
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => { //Describe what would happen if the form is submitted
     try {
-      await axios.post("/api/channels", values);
+      await axios.post(url, values);
 
       form.reset();
       router.refresh();
