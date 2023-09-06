@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 import { UseModel } from "@/hooks/use-modal-store";
 
@@ -13,8 +14,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 export const LeaveServerModel = () => {
 
@@ -32,9 +32,9 @@ export const LeaveServerModel = () => {
 
       await axios.patch(`/api/servers/${server?.id}/leave`);
 
-      router.refresh();
       onClose();
-
+      router.refresh();
+      router.push("/");
     } catch(err){
       console.log(err);
     } finally {
@@ -59,7 +59,7 @@ export const LeaveServerModel = () => {
               <div className="flex items-center justify-between w-full">
                 <Button
                   disabled={isLoading}
-                  onClick={()=>{onClose}}
+                  onClick={onClose}
                   variant={"ghost"}
                 >
                   Cancel
@@ -67,7 +67,7 @@ export const LeaveServerModel = () => {
                 <Button
                   disabled={isLoading}
                   variant={"primary"}
-                  onClick={()=>{onClick}}
+                  onClick={onClick}
                 >
                   Confirm
                 </Button>
