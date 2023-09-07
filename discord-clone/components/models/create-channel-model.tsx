@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 export const CreateChannelModel = () => {
 
@@ -62,9 +63,17 @@ export const CreateChannelModel = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: ChannelType.TEXT
+      type: channelType || ChannelType.TEXT
     },
   });
+
+  useEffect(()=> {
+    if(channelType) {
+      form.setValue("type",channelType);
+    } else {
+      form.setValue("type", ChannelType.TEXT);
+    }
+  },[channelType, form])
 
   const url = qs.stringifyUrl({
     url: `/api/channels/`,
@@ -137,7 +146,7 @@ export const CreateChannelModel = () => {
                         <Select
                           disabled={isLoading}
                           onValueChange={field.onChange}
-                          defaultValue={channelType}
+                          defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger className="bg-zinc-300/50 border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none">
