@@ -1,4 +1,4 @@
-const ChannelConversation = () => {
+const ChannelIdPage = () => {
     return ( 
         <div>
             Channel Convo
@@ -6,4 +6,4 @@ const ChannelConversation = () => {
      );
 }
  
-export default ChannelConversation;
+export default ChannelIdPage;

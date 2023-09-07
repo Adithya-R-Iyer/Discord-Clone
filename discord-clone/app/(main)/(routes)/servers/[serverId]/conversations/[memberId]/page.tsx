@@ -1,9 +1,9 @@
-const MemberConversation = () => {
+const MemberIdPage = () => {
     return ( 
         <div>
-            lol
+            Member Conversation
         </div>
      );
 }
  
-export default MemberConversation;
+export default MemberIdPage;
