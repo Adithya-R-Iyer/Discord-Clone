@@ -34,13 +34,12 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ServerWithMembersProfilesAndChannels } from "@/types";
-
 
 export const CreateChannelModel = () => {
 
   const { isOpen, onClose, type, data } = UseModel();
   // const { server } = data as { server : ServerWithMembersProfilesAndChannels }; 
+  const { channelType } = data
 
   const isModelOpen = isOpen && type === "createChannel";
 
@@ -138,7 +137,7 @@ export const CreateChannelModel = () => {
                         <Select
                           disabled={isLoading}
                           onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          defaultValue={channelType}
                         >
                           <FormControl>
                             <SelectTrigger className="bg-zinc-300/50 border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none">
