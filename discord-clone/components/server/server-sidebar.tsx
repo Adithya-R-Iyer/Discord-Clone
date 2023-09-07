@@ -14,7 +14,6 @@ import ServerSearch from "@/components/server/server-search";
 import ServerSection from "@/components/server/server-section";
 
 import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
-import { channel } from "diagnostics_channel";
 import ServerChannel from "./server-channel";
 
 interface ServerSidebarProps {
@@ -148,7 +147,7 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
                     label="Text Channels"
                 />
                 {textChannels.map((channel)=>(
-                  <ServerChannel/>
+                  <ServerChannel server={server} channel={channel} role={role} key={channel.id}/>
                 ))}
             </div>
         )}
