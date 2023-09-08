@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import ModelProvider from '@/components/providers/model-provider'
+import { SocketProvider } from '@/components/providers/socket-provider'
 
 const font = Open_Sans({ subsets: ['latin'] })
 
@@ -24,8 +25,10 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey='discord-theme'>
-            <ModelProvider/>
-            {children}
+            <SocketProvider>
+              <ModelProvider/>
+              {children}
+            </SocketProvider>
           </ThemeProvider>
         </body>
       </html>
