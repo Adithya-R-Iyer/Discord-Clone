@@ -13,6 +13,7 @@ import {
     FormField,
     FormItem,
 } from '@/components/ui/form'
+import { useRouter } from "next/navigation";
 import { Input } from '@/components/ui/input'
 import { Plus, Smile } from "lucide-react";
 
@@ -44,6 +45,7 @@ const ChatInput = ({
     });
 
     const isLoading = form.formState.isSubmitting;
+    const router = useRouter();
 
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
 
@@ -53,9 +55,14 @@ const ChatInput = ({
                 query,
             });
 
-            await axios.post(url, value) 
+            console.log(value);
+            await axios.post(url, value);
+
+            form.reset();
+            router.refresh();
 
         } catch(err) {
+            console.log("axios error"); 
             console.log(err);
         }
 
