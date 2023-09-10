@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { Input } from '@/components/ui/input'
 import { Plus, Smile } from "lucide-react";
 import { UseModel } from "@/hooks/use-modal-store";
+import EmojiPicker from "@/components/emoji-picker";
 
 interface ChatInputProps {
     apiUrl: string;
@@ -93,7 +94,7 @@ const ChatInput = ({
                                     {...field}
                                 />
                                 <div className="absolute top-7 right-8 cursor-pointer">
-                                    <Smile />
+                                    <EmojiPicker onChange={(emoji: string) => field.onChange(`${field.value}${emoji}`)}/>
                                 </div>
                             </div>
                         </FormControl>
