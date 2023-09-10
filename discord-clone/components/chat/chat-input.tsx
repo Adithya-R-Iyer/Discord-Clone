@@ -16,6 +16,7 @@ import {
 import { useRouter } from "next/navigation";
 import { Input } from '@/components/ui/input'
 import { Plus, Smile } from "lucide-react";
+import { UseModel } from "@/hooks/use-modal-store";
 
 interface ChatInputProps {
     apiUrl: string;
@@ -46,6 +47,7 @@ const ChatInput = ({
 
     const isLoading = form.formState.isSubmitting;
     const router = useRouter();
+    const {onOpen} = UseModel();
 
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
 
@@ -55,7 +57,6 @@ const ChatInput = ({
                 query,
             });
 
-            console.log(value);
             await axios.post(url, value);
 
             form.reset();
@@ -80,7 +81,7 @@ const ChatInput = ({
                             <div className="relative p-4 pb-6">
                                 <button
                                     type="button"
-                                    onClick={()=>{}}
+                                    onClick={()=>onOpen("messageFile",{ apiUrl, query})}
                                     className="absolute top-7 left-8 h-[24px] w-[24px] bg-zinc-500 dark:bg-zinc-400 hover:bg-zinc-600 dark:hover:bg-zinc-300 transition flex items-center justify-center rounded-full p-1"
                                 >
                                     <Plus className="text-white dark:text-[#313338]"/>
