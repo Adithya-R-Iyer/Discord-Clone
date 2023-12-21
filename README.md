@@ -1,1 +1,1 @@
-# Discord-Clone
+# Full Stack VoIP Gaming Social Platform
